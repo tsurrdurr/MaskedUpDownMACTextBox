@@ -7,6 +7,8 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        
+        <Grid Width="150" Height="24"> 
+            <local:MACAddressUpDown />
+        </Grid>
     </Grid>
 </Window>
