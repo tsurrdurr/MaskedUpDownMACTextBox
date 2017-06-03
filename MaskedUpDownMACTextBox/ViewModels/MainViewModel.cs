@@ -18,7 +18,7 @@ namespace MaskedUpDownMACTextBox
             {
                 if (_macLine != value)
                 {
-                    _macLine = value;
+                    _macLine = Helpers.MACValidator.Validate(value, _macLine);
                     OnPropertyChanged(nameof(MACline));
                 }
             }

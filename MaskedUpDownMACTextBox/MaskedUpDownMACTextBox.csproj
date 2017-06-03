@@ -60,6 +60,7 @@
     </ApplicationDefinition>
     <Compile Include="Behaviors\MACAddressFieldBehavior.cs" />
     <Compile Include="Helpers\HexToDecimal.cs" />
+    <Compile Include="Helpers\MACValidator.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Page Include="Views\MACAddressUpDown.xaml">
       <SubType>Designer</SubType>
