@@ -35,6 +35,24 @@ namespace MaskedUpDownMACTextBox.Behaviors
             AssociatedObject.upBtn.Click += UpBtn_Click;
             AssociatedObject.downBtn.Click += DownBtn_Click;
             AssociatedObject.MacField.LostFocus += FillEmptySpaces;
+            AssociatedObject.MacField.PreviewKeyDown += MacField_PreviewKeyDown;
+        }
+
+        private void MacField_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            var textBox = sender as TextBox;
+            var userControl = GetUserControl(textBox);
+            if (e.Key == System.Windows.Input.Key.Down)
+            {
+                e.Handled = true;
+                userControl.MacField.Text = MinusOneMac(userControl.MacField.Text);
+            }
+            else if (e.Key == System.Windows.Input.Key.Up)
+            {
+                e.Handled = true;
+                userControl.MacField.Text = PlusOneMac(userControl.MacField.Text);
+            }
+
         }
 
         private void UpBtn_Click(object sender, RoutedEventArgs e)
@@ -58,9 +76,9 @@ namespace MaskedUpDownMACTextBox.Behaviors
             textbox.Text = UnderscoresToZeroes(textbox.Text);
         }
 
-        private static MACAddressUpDown GetUserControl(Button btn)
+        private static MACAddressUpDown GetUserControl(Control child)
         {
-            var parent = VisualTreeHelper.GetParent(btn);
+            var parent = VisualTreeHelper.GetParent(child);
             while (parent != null && parent.GetType() != typeof(MACAddressUpDown))
             {
                 parent = VisualTreeHelper.GetParent(parent);
@@ -68,6 +86,7 @@ namespace MaskedUpDownMACTextBox.Behaviors
             var userControl = parent as MACAddressUpDown;
             return userControl;
         }
+
         private string PlusOneMac(string macField)
         {
             var newvalue = MACToDecimal(macField) + 1;
@@ -110,7 +129,10 @@ namespace MaskedUpDownMACTextBox.Behaviors
 
         protected override void OnDetaching()
         {
-            AssociatedObject.GotFocus -= FillEmptySpaces;
+            AssociatedObject.upBtn.Click -= UpBtn_Click;
+            AssociatedObject.downBtn.Click -= DownBtn_Click;
+            AssociatedObject.MacField.LostFocus -= FillEmptySpaces;
+            AssociatedObject.MacField.PreviewKeyDown -= MacField_PreviewKeyDown;
             base.OnDetaching();
         }
 

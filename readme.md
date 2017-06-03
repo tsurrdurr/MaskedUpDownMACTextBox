@@ -1,4 +1,4 @@
-##WPF Masked UpDown MAC TextBox UserControl
+## WPF Masked UpDown MAC TextBox UserControl
 
 My take on reinventing the sqare wheel in WPF using MVVM pattern and attached behavior.
 
@@ -8,8 +8,7 @@ Up and down buttons select next and previous MAC address respectively. With up a
 
 When entering any value from keyboard, the resulting line is compared with regex and if it does not fit the MAC format, the change is not applied to the line. E.g. trying to type "Z" in the field results into nothing.
 
-When removing the values an underscore is left n empty space. If you lose focus of the field or press up or down, underscores are replaced with zeroes.
-
+When removing the values an underscore is left in empty space. When the field loses focus or up or down button is pressed, underscores are replaced with zeroes.
 
 ## Installation and running
 
